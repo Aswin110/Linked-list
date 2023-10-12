@@ -28,7 +28,7 @@ class Node {
 class LinkedList {
 	_root = null;
   
-	get root() {
+	get head() {
 		return this._root;
 	}
   
@@ -72,27 +72,96 @@ class LinkedList {
 		return current;
 	}
   
+	at(index){
+		if (this.isEmpty()){
+			console.log('the linked list is empty');
+			return 0;
+		}
+
+		if(index < 1){
+			console.log('enter an positive integer number');
+			return 'invalid number';
+		}
+
+		if(index){
+			return this.valueIndex(index).data;
+		}
+		console.log('index out of range');
+	}
+
+	valueIndex(index){
+		let current = this._root;
+		let listIndex = 1;
+		while((current !==null)){
+			if(listIndex === index){
+				return current;
+			}
+			current = current.next;
+			listIndex +=1;
+		}
+	}
+
+	size(){
+		let num = 0;
+		let current = this._root;
+		if(this.isEmpty()){
+			console.log('the linked list is empty');
+			return 0;
+		}
+
+		while(current !==null){
+			current = current.next;
+			num += 1;
+		}
+		return num; 
+	}
+
+	pop(){
+		this.valueIndex(this.size() - 1).next = null;
+		return 'last element removed';
+	}
+
+	contains(value){
+		let current = this._root;
+		if(this.isEmpty()){
+			console.log('the linked list is empty');
+			return 0;
+		}
+
+		while ((current !==null)){
+			if(current.data === value){
+				return true ;
+			}
+			current = current.next;
+		}
+		return false;
+	}
+
+	find(value){
+		console.log(value);
+	}
+
 	display() {
 		if (this.isEmpty()) console.log('empty');
 		let current = this._root;
-      
+		let num = 1;
 		do {
-			console.log(current.data);
-  
+			console.log('data-',current.data,', index-', num);
+			num +=1;
 			current = current.next;
 		} while (current.next !== null);
-		console.log(current.data);
+		console.log('data-',current.data,', index-', num);
 	}
   
 }
   
 const array = [1, 34, 2, 5];
-  
 const linkedList = new LinkedList(array);
-  
-// linkedList.display();
-  
 const gh = new Node(9);
 linkedList.prepend(gh);
 linkedList.display();
-console.log('root', linkedList.root);
+console.log(linkedList.at(5));
+console.log(linkedList.size());
+console.log(linkedList.pop());
+linkedList.display();
+console.log(linkedList.contains(1));

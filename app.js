@@ -138,7 +138,20 @@ class LinkedList {
 	}
 
 	find(value){
-		console.log(value);
+		let current = this._root;
+		let listIndex = 1;
+		if (this.isEmpty()){ 
+			console.log('the linked list is empty');
+			return 0;
+		}
+		while (current !== null){
+			if (current.data === value){
+				return listIndex;
+			}
+			current = current.next;
+			listIndex += 1;
+		}
+		return 'this number is not in the linked list';
 	}
 
 	display() {
@@ -165,3 +178,6 @@ console.log(linkedList.size());
 console.log(linkedList.pop());
 linkedList.display();
 console.log(linkedList.contains(1));
+console.log(linkedList.find(1));
+
+

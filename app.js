@@ -101,6 +101,29 @@ class LinkedList {
 		}
 	}
 
+	insertAt(value, index) {
+		let newNode = new Node(value);
+		if ( this.valueIndex(index-1) === this.tail() ) {
+			this.valueIndex(index - 1).next = newNode;
+			return 'inserted new value to the end';
+		} else {
+			newNode.next = this.valueIndex(index);
+			this.valueIndex(index - 1).next = newNode;
+			return `added the ${newNode.data} into ${index}'s index `;
+		}
+	}
+
+	removeAt(index) {
+		if ( this.valueIndex(index) === this.tail() ) {
+			this.valueIndex(index - 1).next = null;
+			return 'last node removed';
+		} else {
+			let value = this.valueIndex(index).data;
+			this.valueIndex(index - 1).next = this.valueIndex(index + 1);
+			return `${value} in the ${index}'s index is removed`;
+		}
+	}
+
 	size() {
 		let num = 0;
 		let current = this._root;
@@ -195,3 +218,10 @@ linkedList.display();
 console.log(linkedList.contains(1));
 console.log(linkedList.find(1));
 console.log(linkedList.toString());
+console.log(linkedList.tail());
+console.log(linkedList.insertAt(10, 5));
+linkedList.display();
+console.log(linkedList.insertAt(20, 3));
+linkedList.display();
+console.log(linkedList.removeAt(3));
+linkedList.display();

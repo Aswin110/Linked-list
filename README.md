@@ -1,11 +1,11 @@
-#Linked List
+# Linked List
 
-##create two classes:
+## create two classes:
 
 1. LinkedList class, which will represent the full list.
 2. Node class, containing a value property and a link to the nextNode, set both as null by default.
 
-##Build the following functions in linked list class:
+## Build the following functions in linked list class:
 
 1. append(value) adds a new node containing value to the end of the list
 2. prepend(value) adds a new node containing value to the start of the list

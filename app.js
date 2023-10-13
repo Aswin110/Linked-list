@@ -32,7 +32,7 @@ class LinkedList {
 		return this._root;
 	}
   
-	constructor(arr){
+	constructor(arr) {
 		arr.forEach(e => {
 			let node = new Node(e);
 			this.append(node);
@@ -44,7 +44,7 @@ class LinkedList {
 	}
   
 	append(node) {
-		if (this.isEmpty()) {
+		if ( this.isEmpty() ) {
 			this._root = node;
 		} else {
 			this.tail().next = node;
@@ -53,7 +53,7 @@ class LinkedList {
 		node.next = null;
 	}
   
-	prepend(node){
+	prepend(node) {
 		if (this.isEmpty()){
 			this._root = node;
 		} else {
@@ -63,7 +63,7 @@ class LinkedList {
 	}
     
 	tail() {
-		if (this.isEmpty()) return null;
+		if ( this.isEmpty() ) return null;
   
 		let current = this._root;
 		while (current.next !== null) {
@@ -72,8 +72,8 @@ class LinkedList {
 		return current;
 	}
   
-	at(index){
-		if (this.isEmpty()){
+	at(index) {
+		if ( this.isEmpty() ) {
 			console.log('the linked list is empty');
 			return 0;
 		}
@@ -89,7 +89,7 @@ class LinkedList {
 		console.log('index out of range');
 	}
 
-	valueIndex(index){
+	valueIndex(index) {
 		let current = this._root;
 		let listIndex = 1;
 		while((current !==null)){
@@ -101,7 +101,7 @@ class LinkedList {
 		}
 	}
 
-	size(){
+	size() {
 		let num = 0;
 		let current = this._root;
 		if(this.isEmpty()){
@@ -116,20 +116,20 @@ class LinkedList {
 		return num; 
 	}
 
-	pop(){
+	pop() {
 		this.valueIndex(this.size() - 1).next = null;
 		return 'last element removed';
 	}
 
-	contains(value){
+	contains(value) { 
 		let current = this._root;
-		if(this.isEmpty()){
+		if( this.isEmpty() ) {
 			console.log('the linked list is empty');
 			return 0;
 		}
 
-		while ((current !==null)){
-			if(current.data === value){
+		while ( (current !==null) ) {
+			if(current.data === value) {
 				return true ;
 			}
 			current = current.next;
@@ -137,21 +137,36 @@ class LinkedList {
 		return false;
 	}
 
-	find(value){
+	find(value) {
 		let current = this._root;
 		let listIndex = 1;
-		if (this.isEmpty()){ 
+		if ( this.isEmpty() ) { 
 			console.log('the linked list is empty');
 			return 0;
 		}
-		while (current !== null){
-			if (current.data === value){
+		while (current !== null) {
+			if (current.data === value) {
 				return listIndex;
 			}
 			current = current.next;
 			listIndex += 1;
 		}
 		return 'this number is not in the linked list';
+	}
+
+	toString() {
+		let current = this._root;
+		let string = '';
+		if ( this.isEmpty() ) { 
+			console.log('the linked list is empty');
+			return null;
+		}
+		while(current !== null){
+			string += `(${current.data}) -> `;
+			current = current.next;
+		}
+		string += 'null';
+		return string;
 	}
 
 	display() {
@@ -179,5 +194,4 @@ console.log(linkedList.pop());
 linkedList.display();
 console.log(linkedList.contains(1));
 console.log(linkedList.find(1));
-
-
+console.log(linkedList.toString());
